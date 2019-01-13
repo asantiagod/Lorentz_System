@@ -34,12 +34,12 @@ class rk4:
            fun = lambda a,b : f(a,b,param)
         
        
-       for i in range(len(x)):
+       for i in range(len(x)-1):
            #TODO: Recordar que los parámetros son adicionales
-           k1 = fun(yi,x[i])
-           k2 = fun(yi + 0.5*h*k1,x[i]+ 0.5*h)
-           k3 = fun(yi + 0.5*h*k2,x[i]+ 0.5*h)
-           k4 = fun(yi + h, x[i] + h)
+           k1 = fun(yi,x[i+1])
+           k2 = fun(yi + 0.5*h*k1,x[i+1]+ 0.5*h)
+           k3 = fun(yi + 0.5*h*k2,x[i+1]+ 0.5*h)
+           k4 = fun(yi + h, x[i+1] + h)
            yi = yi +(h/6.)*(k1 + 2.*k2 + 2.*k3 + k4)
            res.append(yi)
        return [x,array(res)]
