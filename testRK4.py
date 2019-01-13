@@ -5,7 +5,7 @@ Created on Thu Nov  1 22:23:29 2018
 @author: Santiago
 """
 
-from integrator import RK4
+from integrator import rk4
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -21,7 +21,7 @@ def Ec(data,t0): #las distancias están en Mm = 10^6m
     return np.array([k*data[1], data[0], k*data[3], data[2]])
     
 y0 = np.array([0., 1.5*(10**2), 2.573, 0]) #[V_x, x, V_y, y]
-sol = RK4.solve(Ec, y0, 0., 365.*5,365.*5,None)
+sol = rk4.solve(Ec, y0, 0., 365.*5,365.*5,None)
 t = sol[0]
 sol = sol[1]
 

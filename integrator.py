@@ -6,7 +6,7 @@ Created on Tue Oct 30 22:22:14 2018
 """
 from numpy import linspace, array
 
-class RK4:   
+class rk4:   
     #def solve(self,f,y0,x0,xf,n,param = None):
     def solve(f,y0,x0,xf,n,param = None):
        """
