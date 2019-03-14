@@ -9,6 +9,7 @@ from integrator import rk4
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
+from scipy.integrate import odeint
 
 def lorentz(X,t,param):
     """
@@ -46,5 +47,18 @@ ax.set_ylabel("Y")
 ax.set_zlabel("Z")
 
 #Rotación del punto de vista para que coincida con el ejemplo
+ax.view_init(22, -162)
+plt.show()
+
+#===================================
+#  Prueba usando la función odeint
+#===================================
+sol = odeint(lorentz, X0, t, args=(param,))
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+ax.plot(sol[:,0], sol[:,1], sol[:,2])
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+ax.set_zlabel("Z")
 ax.view_init(22, -162)
 plt.show()
