@@ -87,3 +87,33 @@ class rk4:
        b4 = -(theta**2)/2. + (2*theta**3)/3.
        
        return yArr[i] + h*(b1*k1 + b2*k2 + b3*k3 + b4*k4)
+
+class euler:
+    def solve(f,y0,x0,xf,n,param = None):
+        """
+        @brief     Soliciona un sistema de EDO por el método de Euler.
+              Se basa el la función scipy.integrate.odeint para tomar los 
+              parámetros de entrada.
+        @param f   f(y0,x0,...) Función que calcula la derivada de y en x0.
+        @param y0  Valores iniciales (puede ser un vector).
+        @param x0  Valor inicial de la variable independiente.
+        @param xf  Valor fínal de la variable independiente.
+        @param n   Número de puntos en los que se va a calcular la solución
+        @param param   (Opcional) Lista con los parámetros adicionales que la 
+                  función f necesita.       
+        """
+        x = linspace(x0,xf,n)       
+        h = x[1] - x[0]
+        res = [y0]
+        yi = y0
+
+        # ¿Hay parámetros adicionales?
+        if param is None:
+           fun  = f
+        else:
+           fun = lambda a,b : f(a,b,param)
+
+        for i in range(len(x)-1):
+            yi = yi + h*fun(yi,x[i+1])
+            res.append(yi)
+        return [x,array(res)]
